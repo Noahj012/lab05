@@ -36,6 +36,29 @@ public class Calculator
     {
         int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
         // TODO: complete this...
+       try
+       {
+        if (tokens[0].equalsIgnoreCase("Negate"))
+        {
+        	return a * -1;
+        }
+        
+        if (tokens[0].equalsIgnoreCase("Halve"))
+        {
+        	return a/2;
+        }
+       }
+       catch(NumberFormatException e)
+       {
+    	   System.out.println(e.getMessage());
+       }
+       
+       if (tokens[0] != "Negate" || tokens[0] != "Halve")
+       {
+    	   System.out.println("Illegal Command");
+    	   return 0;
+       }
+        return 0;
     }
 
     /**
@@ -70,6 +93,8 @@ public class Calculator
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
         // TODO: complete this...
+    	
+    	return 0;
     }
 
     /**
@@ -107,7 +132,7 @@ public class Calculator
         {
             // TODO: complete this...
         }
-
+        return 0;
     }
 
     /**
@@ -144,5 +169,7 @@ public class Calculator
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
+    	
+    	return "";
     }
 }
