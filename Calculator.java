@@ -34,31 +34,32 @@ public class Calculator
      */
     protected static int calculateTwoTokens(String[] tokens) throws NumberFormatException, CalculatorException
     {
-        int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
-        // TODO: complete this...
-       try
-       {
-        if (tokens[0].equalsIgnoreCase("Negate"))
-        {
-        	return a * -1;
-        }
-        
-        if (tokens[0].equalsIgnoreCase("Halve"))
-        {
-        	return a/2;
-        }
-       }
-       catch(NumberFormatException e)
-       {
-    	   System.out.println(e.getMessage());
-       }
+    	
+		 try
+	      { 
+    		int a = Integer.parseInt(tokens[1]); // Throws NumberFormatException if the second token is not an int value.
+    		// TODO: complete this...
+      
+	        if (tokens[0].equalsIgnoreCase("Negate"))
+	        {
+	        	return a * -1;
+	        }
+	        
+	        if (tokens[0].equalsIgnoreCase("Halve"))
+	        {
+	        	return a/2;
+	        }
+          }
+	       catch(NumberFormatException e)
+	       {
+	    	   System.out.println(e.getMessage());
+	       }
        
+    	
        if (tokens[0] != "Negate" || tokens[0] != "Halve")
        {
-    	   System.out.println("Illegal Command");
-    	   return 0;
+    	  throw new CalculatorException("Calculator Exception , message is : Illegal Command");
        }
-        return 0;
     }
 
     /**
@@ -93,7 +94,41 @@ public class Calculator
             throws ArithmeticException, NumberFormatException, CalculatorException
     {
         // TODO: complete this...
+    	try 
+    	{
+    		int a = Integer.parseInt(tokens[0]);
+    		int b = Integer.parseInt(tokens[2]);
+    		
+	    	if (tokens[1].equals("+"))
+	    	{
+	    		return a + b;
+	    	}
+	    	
+	    	if (tokens[1].equals("-"))
+	    	{
+	    		return a - b;
+	    	}
+	    	
+	    	if (tokens[1].equals("/"))
+	    	{
+	    		return a / b;
+	    	}
+    	}
+    	catch (NumberFormatException e)
+    	{
+    		System.out.println(e.getMessage());
+    		System.out.println("Input number cannot be parsed to an int . Please try again .");
+    	}
     	
+    	if (tokens[1] != "+" || tokens[1] != "-" || tokens[1] != "/")
+        {
+     	  throw new CalculatorException("Calculator Exception , message is : Illegal Command");
+        }
+    	
+    	if (tokens[1] != "+" || tokens[1] != "-" || tokens[1] != "/")
+        {
+     	  throw new ArithmeticException("Calculator Exception , message is : Illegal Command");
+        }
     	return 0;
     }
 
