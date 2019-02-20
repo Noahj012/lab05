@@ -1,3 +1,5 @@
+
+
 /**
  * A class representing a simple calculator. The calculator takes in an input string and interprets it as a command.
  * The calculator evaluates the command and returns a result.
@@ -60,6 +62,8 @@ public class Calculator
        {
     	  throw new CalculatorException("Calculator Exception , message is : Illegal Command");
        }
+       
+       return 0;
     }
 
     /**
@@ -163,10 +167,35 @@ public class Calculator
     protected static int execute(String[] tokens) throws NumberFormatException, CalculatorException
     {
         // Condition on the number of tokens (number of strings in user input separated by spaces)
-        switch(tokens.length)
-        {
+//        switch(tokens.length)
+//        {
             // TODO: complete this...
-        }
+	        if(tokens.length == 1)
+	        {
+	        	if (tokens[0].equalsIgnoreCase("quite"))
+	        	{
+	        		return Integer.MIN_VALUE;
+	        	}
+	        	else
+	        	{
+	        		throw new CalculatorException("Calculator Exception , message is : Illegal Command");
+	        	}
+	        }
+	        if (tokens.length == 2)
+	        {
+	        	calculateTwoTokens(tokens);
+	        }
+	        if (tokens.length == 3)
+	        {
+	        	calculateThreeTokens(tokens);
+	        }
+	        if (tokens.length > 3)
+	        {
+	        	throw new CalculatorException("Calculator Exception , message is : Illegal Token Length");
+	        }
+        
+        
+        //}
         return 0;
     }
 
@@ -204,7 +233,18 @@ public class Calculator
         // TODO: complete this...
         // Hint: you should try and call execute(). If execute encounters an error, it will throw an exception. This
         // method will catch those exceptions and respond accordingly.
+    	String [] tokens = input.split(" ");
+    	int a = 0;
+    	try
+    	{
+    		
+    		a = execute(tokens);
+    	}
+    	catch(CalculatorException e)
+    	{
+    		System.out.println(e.getMessage());
+    	}
     	
-    	return "";
+    	return String.format("The result is : %s", a);
     }
 }
